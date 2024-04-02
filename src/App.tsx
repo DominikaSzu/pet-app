@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import './App.css'
+import { Input } from './components';
 
 function App() {
-  const [films, setFilms] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <div>
       <h1>Film search</h1>
-      <label id="film_search">
-        <input type="text" name="film_search" value={films} onChange={e => setFilms(e.target.value)}/>
-      </label>
+      <Input value={inputValue} onInputChange={(e) => setInputValue(e.target.value)}/>
     </div>
   )
 }

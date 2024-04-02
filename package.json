@@ -26,7 +26,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "prettier": "3.2.5",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "vite": "^5.2.7"
   },
   "main": "index.js",
   "repository": "git@github.com:DominikaSzu/pet-app.git",

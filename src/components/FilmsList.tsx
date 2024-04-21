@@ -5,7 +5,7 @@ export type Props = {
 }
 
 export const FilmsList = ({ films }: Props) => {
-    return <div>{console.log(films)}
+    return <div>
         {films && films.length === 0 ? null : films && films.map(film => <Film key={film.imdbID} {...film}/>)}
     </div>
 }

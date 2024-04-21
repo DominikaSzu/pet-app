@@ -16,11 +16,11 @@ function App() {
     <div>
       <h1>Film search</h1>
       <Input value={inputValue} onInputChange={(e) => setInputValue(e.target.value)}/>
-      {/* {films.length > 0 ? films.map(film => (
+      {films.length > 0 ? films.map(film => (
         <h2>
           {film.title}
         </h2>
-      )) : null} */}
+      )) : null}
     </div>
   )
 }

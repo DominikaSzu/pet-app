@@ -1,11 +1,13 @@
 import { ChangeEvent, useState } from "react";
 import "./App.css";
 import { Input, FilmsList } from "./components";
-import { useFetch } from "./hooks/useFetchFilms";
+import { useFetchFilmsByTitle } from "./hooks/useFetchFilms";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const { error, films, isLoading } = useFetch({ query: inputValue });
+  const { error, films, isLoading } = useFetchFilmsByTitle({
+    query: inputValue,
+  });
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);

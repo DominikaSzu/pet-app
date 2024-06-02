@@ -1,19 +1,11 @@
-import { fetcher } from "../utils";
-import useSWR from "swr";
+import { useFetch } from "./useFetch";
 
-type Props = {
-  query: string;
-};
+type Props = { query: string };
 
-export const useFetch = ({ query }: Props) => {
-  const { data, isLoading, error } = useSWR(
-    `http://www.omdbapi.com/?s=${query}&apikey=${import.meta.env.VITE_API_KEY}`,
-    fetcher,
-  );
+export const useFetchFilmsByTitle = ({ query = '' }: Props) => {
+    const requestParams = [{ key: "s", value: query }];
 
-  return {
-    films: data.Search,
-    isLoading,
-    error,
-  };
+    const { films, isLoading, error } = useFetch({ requestParams });
+
+    return { films, isLoading, error };
 };

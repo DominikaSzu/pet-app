@@ -5,10 +5,10 @@ export type FilmType = {
   imdbID: string;
 };
 
-export const Film = (film: FilmType) => (
+export const Film = ({ Title, Year, Poster }: FilmType) => (
   <div>
-    <img src={film.Poster} alt={`Poster of movie: ${film.Title}`} />
-    <h2>{film.Title}</h2>
-    <p>{film.Year}</p>
+    <img src={Poster} alt={`Poster of movie: ${Title}`} />
+    <h2>{Title}</h2>
+    <p>{Year}</p>
   </div>
 );

@@ -1,4 +1,5 @@
 import { Film, FilmType } from "./Film";
+import { NoResults } from "./NoResults";
 
 export type Props = {
     films: FilmType[];
@@ -6,6 +7,6 @@ export type Props = {
 
 export const FilmsList = ({ films }: Props) => {
     return <div>
-        {films && films.length === 0 ? null : films && films.map(film => <Film key={film.imdbID} {...film}/>)}
+        {films && films.length === 0 ? <NoResults/> : films.map(film => <Film key={film.imdbID} {...film}/>)}
     </div>
 }

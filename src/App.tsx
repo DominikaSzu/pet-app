@@ -1,15 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import "./App.css";
 import { Input, FilmsList } from "./components";
-import { fetcher } from "./utils";
-import useSWR from "swr";
+import { useFetch } from "./hooks/useFetchFilms";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const { data, isLoading, error } = useSWR(
-    `http://www.omdbapi.com/?s=${inputValue}&apikey=${import.meta.env.VITE_API_KEY}`,
-    fetcher,
-  );
+  const { error, films, isLoading } = useFetch({ query: inputValue });
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
@@ -19,7 +15,7 @@ function App() {
     <div>
       <h1>Film search</h1>
       <Input value={inputValue} onInputChange={onChangeHandle} />
-      {isLoading ? <div>"Loading..."</div> : <FilmsList films={data.Search} />}
+      {isLoading ? <div>"Loading..."</div> : <FilmsList films={films} />}
     </div>
   );
 }

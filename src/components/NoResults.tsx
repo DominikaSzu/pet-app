@@ -1,3 +1,1 @@
-export const NoResults = () => (
-    <div>Sorry, no results matching your query</div>
-)
+export const NoResults = () => <div>Sorry, no results matching your query</div>;

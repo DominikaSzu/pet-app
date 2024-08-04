@@ -5,8 +5,7 @@ type RequestOptions = {
 
 const API_BASE_URL = "http://www.omdbapi.com/";
 
-// Internal function to handle api key, response parsing, etc
-const makeRequest = async ({ method, queryParams }: RequestOptions = { method: 'GET' }) => {
+const requestData = async ({ method, queryParams }: RequestOptions = { method: 'GET' }) => {
     const params = {
         apikey: import.meta.env.VITE_API_KEY,
         ...queryParams,
@@ -24,4 +23,4 @@ const makeRequest = async ({ method, queryParams }: RequestOptions = { method: '
     return await response.json()
 }
 
-export const fetchFilmsByTitle = (search?: string) => makeRequest({ queryParams: { 's': search || '' } });
+export const fetchFilmsByTitle = (search?: string) => requestData({ queryParams: { 's': search || '' } });

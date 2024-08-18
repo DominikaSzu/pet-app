@@ -5,7 +5,9 @@ export type Props = {
 };
 
 export const FilmsList = ({ films }: Props) => {
+  
   const noFilmsFound = !films || films.length === 0;
+  
   return (
     <div>
       {noFilmsFound

@@ -3,18 +3,25 @@ import "./App.css";
 import { Input, FilmsList } from "./components";
 import { fetchFilmsByTitle } from "./api";
 import useSWR from "swr";
+import { debounce } from "./common/debounce";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const { data, error, isLoading } = useSWR(() => fetchFilmsByTitle(inputValue));
+  const debouncedFetchFilms = debounce({callback: async () => await fetchFilmsByTitle(inputValue)});
+
+  const { data, error, isLoading } = useSWR(['films', inputValue], async () => await fetchFilmsByTitle(inputValue));
+
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
+
+
   if (error) return "An error occurred";
+
   return (
     <div>
       <h1>Film search</h1>
-      <Input value={inputValue} onInputChange={onChangeHandle} />
-      {isLoading ? <div>"Loading..."</div> : <FilmsList films={data} />}
+      <Input value={inputValue} onChange={onChangeHandle} />
+      {isLoading ? <div>"Loading..."</div> : <FilmsList films={data?.Search} />}
     </div>
   );
 }

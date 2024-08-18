@@ -3,7 +3,7 @@ type RequestOptions = {
   queryParams?: { [k: string]: string };
 };
 
-const API_BASE_URL = "http://www.omdbapi.com";
+const API_BASE_URL = "http://www.omdbapi.com/";
 
 const requestData = async (
   { method, queryParams }: RequestOptions = { method: "GET" },
@@ -27,3 +27,6 @@ const requestData = async (
 
 export const fetchFilmsByTitle = async (search?: string) =>
   await requestData({ queryParams: search ? { s: search } : {} });
+
+export const fetchFilmById = async (id?: string) =>
+  await requestData({ queryParams: { i: id || "" } });

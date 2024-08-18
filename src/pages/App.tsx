@@ -1,19 +1,18 @@
 import { ChangeEvent, useState } from "react";
 import "./App.css";
-import { Input, FilmsList } from "./components";
-import { fetchFilmsByTitle } from "./api";
+import { Input, FilmsList } from "../components";
+import { fetchFilmsByTitle } from "../api";
 import useSWR from "swr";
-import { debounce } from "./common/debounce";
+import { debounce } from "../common/debounce";
 
-function App() {
+export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const debouncedFetchFilms = debounce({
-    callback: async () => await fetchFilmsByTitle(inputValue),
+    callback: () => fetchFilmsByTitle(inputValue),
   });
 
-  const { data, error, isLoading } = useSWR(
-    ["films", inputValue],
-    async () => await fetchFilmsByTitle(inputValue),
+  const { data, error, isLoading } = useSWR(["films", inputValue], () =>
+    fetchFilmsByTitle(inputValue),
   );
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) =>
@@ -28,6 +27,6 @@ function App() {
       {isLoading ? <div>"Loading..."</div> : <FilmsList films={data?.Search} />}
     </div>
   );
-}
+};
 
 export default App;

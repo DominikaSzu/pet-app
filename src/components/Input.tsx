@@ -1,17 +1,12 @@
 type Props = {
   value: string;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const Input = ({ value, onInputChange }: Props) => {
+export const Input = ({ value, onChange }: Props) => {
   return (
     <label id="film_search">
-      <input
-        type="text"
-        name="film_search"
-        value={value}
-        onChange={onInputChange}
-      />
+      <input type="text" name="film_search" value={value} onChange={onChange} />
     </label>
   );
 };

@@ -7,13 +7,17 @@ import { debounce } from "./common/debounce";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const debouncedFetchFilms = debounce({callback: async () => await fetchFilmsByTitle(inputValue)});
+  const debouncedFetchFilms = debounce({
+    callback: async () => await fetchFilmsByTitle(inputValue),
+  });
 
-  const { data, error, isLoading } = useSWR(['films', inputValue], async () => await fetchFilmsByTitle(inputValue));
+  const { data, error, isLoading } = useSWR(
+    ["films", inputValue],
+    async () => await fetchFilmsByTitle(inputValue),
+  );
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
-
 
   if (error) return "An error occurred";
 
